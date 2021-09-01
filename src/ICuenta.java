@@ -2,11 +2,11 @@ public interface ICuenta {
 
 
 
-    public Double getSaldo();
+    Double getSaldo();
 
-    public void depositar(Double  monto) ;
+    void depositar(Double  monto) ;
 
-    public void retirar(Double  monto);
+    void retirar(Double  monto);
 
 
 }

@@ -1,4 +1,11 @@
 import java.util.Scanner;
+//Preguntar como hacer un logger. Es un archivo donde se guardan todos los movimientos? o solo las excepciones manejadas?
+//Como creo el archivo.txt?
+// ver si está bien este manejo de excepciones
+// como usaria optionals aca
+
+
+
 
 public class Main {
 

@@ -1,0 +1,64 @@
+
+H
+java:S1135"2Complete the task associated to this TODO comment.(Ú¯Á­
+P
+java:S18544":Remove this useless assignment to local variable "logger".(¢Óì±
+A
+java:S14814"+Remove this unused "logger" local variable.(¢Óì±
+N	java:S1065"9Replace this use of System.out or System.err by a logger.(êç‹±
+N	java:S1066"9Replace this use of System.out or System.err by a logger.(–ĞüŞ
+N	java:S1067"9Replace this use of System.out or System.err by a logger.(êç‹±
+N	java:S106E"9Replace this use of System.out or System.err by a logger.(êç‹±
+S	java:S106F"9Replace this use of System.out or System.err by a logger.(‰©ƒœúÿÿÿÿ
+N	java:S106G"9Replace this use of System.out or System.err by a logger.(êç‹±
+S	java:S106H"9Replace this use of System.out or System.err by a logger.(ªÓ¼áşÿÿÿÿ
+N	java:S106M"9Replace this use of System.out or System.err by a logger.(Â¥öİ
+N	java:S106Y"9Replace this use of System.out or System.err by a logger.(êç‹±
+S	java:S106Z"9Replace this use of System.out or System.err by a logger.(şË’úÿÿÿÿ
+N	java:S106["9Replace this use of System.out or System.err by a logger.(êç‹±
+S	java:S106f"9Replace this use of System.out or System.err by a logger.(åÛôøÿÿÿÿ
+m
+java:S3776n"RRefactor this method to reduce its Cognitive Complexity from 22 to the 15 allowed.(úæ¢“øÿÿÿÿ
+N	java:S106s"9Replace this use of System.out or System.err by a logger.(êç‹±
+S	java:S106t"9Replace this use of System.out or System.err by a logger.(¿Â›Áùÿÿÿÿ
+N	java:S106u"9Replace this use of System.out or System.err by a logger.(êç‹±
+S	java:S106y"9Replace this use of System.out or System.err by a logger.(ı‹³áøÿÿÿÿ
+T	java:S106”"9Replace this use of System.out or System.err by a logger.(‡‰Åşÿÿÿÿ
+O	java:S106—"9Replace this use of System.out or System.err by a logger.(šã”†
+V
+java:S1854":Remove this useless assignment to local variable "logger".(™Ã¸Úúÿÿÿÿ
+G
+java:S1481"+Remove this unused "logger" local variable.(™Ã¸Úúÿÿÿÿ
+O	java:S106Ÿ"9Replace this use of System.out or System.err by a logger.(êç‹±
+T	java:S106 "9Replace this use of System.out or System.err by a logger.(íÛú’ÿÿÿÿÿ
+O	java:S106¡"9Replace this use of System.out or System.err by a logger.(êç‹±
+T	java:S106¦"9Replace this use of System.out or System.err by a logger.(ÅÛÆ£üÿÿÿÿ
+T	java:S106¨"9Replace this use of System.out or System.err by a logger.(ÅÛÆ£üÿÿÿÿ
+O	java:S106»"9Replace this use of System.out or System.err by a logger.(Â¥öİ
+T	java:S106¾"9Replace this use of System.out or System.err by a logger.(ÚÓüÿÿÿÿÿ
+O	java:S106Ç"9Replace this use of System.out or System.err by a logger.(î¿ã
+N	java:S106Ì"9Replace this use of System.out or System.err by a logger.(ñƒ½,
+W	java:S125Ò"<This block of commented-out lines of code should be removed.(Ò„Öäúÿÿÿÿ
+j
+java:S1128"TRemove this unnecessary import: same package classes are always implicitly imported.(ÓŞÏÛ
+j
+java:S1128"TRemove this unnecessary import: same package classes are always implicitly imported.(÷‰îƒ
+o
+java:S1128"TRemove this unnecessary import: same package classes are always implicitly imported.(¨˜ëİüÿÿÿÿ
+o
+java:S1128"TRemove this unnecessary import: same package classes are always implicitly imported.(Ñ¼èøÿÿÿÿ
+o
+java:S1128"TRemove this unnecessary import: same package classes are always implicitly imported.(æÃ§ƒüÿÿÿÿ
+j
+java:S1128"TRemove this unnecessary import: same package classes are always implicitly imported.(‰÷÷ª
+j
+java:S1128
+"TRemove this unnecessary import: same package classes are always implicitly imported.(—­—å
+j
+java:S1128"TRemove this unnecessary import: same package classes are always implicitly imported.(†Ğ¥Å
+o
+java:S1128"TRemove this unnecessary import: same package classes are always implicitly imported.(Ã‘ÅÃıÿÿÿÿ
+i
+java:S1128"TRemove this unnecessary import: same package classes are always implicitly imported.(¬›ãD
+~
+java:S11925"hDefine a constant instead of duplicating this literal "--------------------------------------" 10 times.(êç‹±

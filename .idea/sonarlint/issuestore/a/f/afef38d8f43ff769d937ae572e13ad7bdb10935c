@@ -1,6 +1,15 @@
 
-S	java:S106"9Replace this use of System.out or System.err by a logger.(Î¢Çßúÿÿÿÿ
-N	java:S106"9Replace this use of System.out or System.err by a logger.(êç‹±
-N	java:S106"9Replace this use of System.out or System.err by a logger.(ìÊ·˜
+N	java:S106)"9Replace this use of System.out or System.err by a logger.(êç‹±
+N	java:S106*"9Replace this use of System.out or System.err by a logger.(„¯œ¨
+N	java:S106+"9Replace this use of System.out or System.err by a logger.(êç‹±
+S	java:S106,"9Replace this use of System.out or System.err by a logger.(ªÓ¼áþÿÿÿÿ
+S	java:S106."9Replace this use of System.out or System.err by a logger.(ïéÏŸüÿÿÿÿ
+S	java:S1066"9Replace this use of System.out or System.err by a logger.(Î¢Çßúÿÿÿÿ
+N	java:S1069"9Replace this use of System.out or System.err by a logger.(êç‹±
+N	java:S106:"9Replace this use of System.out or System.err by a logger.(ìÊ·˜
+N	java:S106;"9Replace this use of System.out or System.err by a logger.(êç‹±
+S	java:S106<"9Replace this use of System.out or System.err by a logger.(ªÓ¼áþÿÿÿÿ
+}
+java:S1192)"gDefine a constant instead of duplicating this literal "--------------------------------------" 4 times.(êç‹±
 0
 java:S1700"Rename field "movimientos"(²ÆÖŸ

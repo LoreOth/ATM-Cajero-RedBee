@@ -1,8 +1,16 @@
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Optional;
 import java.util.Scanner;
 import javax.swing.Timer;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.logging.Logger;
+import java.util.logging.FileHandler;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.*;
 
 /*
 Ver si está bien la estructura.
@@ -20,46 +28,58 @@ Hacer un log  que imprima todo los pasos y hora
 
 public class ATM {
     private Usuario usuario;
-    private Movimientos movimientos;
     private Scanner sc = new Scanner(System.in);
 
 
     public void validarUsuario(String nombre, String pass) {
         usuario = new Usuario(nombre, pass);
-        movimientos = new Movimientos(usuario);
+        Movimientos.getInstance(usuario);
+
     }
 
-    public void menuPrincipal() {
-        int i = 3;
-        while (true) {
+    public Integer manejoExcepcion() {
+        try {
+            return sc.nextInt();
+        } catch (InputMismatchException ex) {
+            Movimientos.getInstance(usuario).agregarError(" Se debe ingresa un número");
+        }
+        return null;
+    }
+
+    public void menuPrincipal() { // switch o mapa ver clase menu/ estrategy, factory ver interaz
+        boolean ok = true;
+        while (ok) {
+            Logger logger = Logger.getLogger("Logger.txt");     // ver como resolver esto
             System.out.println("--------------------------------------");
             System.out.println("1. Elegir tipo de cuenta\n2. Cambiar contraseña\n3. SALIR");
             System.out.println("--------------------------------------");
-            int opcion = sc.nextInt();
-            if (opcion == 1) {
-                Cuenta cta = menuEleccionCuenta();
-                if (cta != null) {
-                    movimientos.agregarMovimiento("Acceso a cuenta : " + cta.descripcionCuenta());
+            try {
+                int opcion = Integer.parseInt(sc.nextLine());
+                if (opcion == 1) {
+                    Cuenta cta = menuEleccionCuenta();
+
+                    Movimientos.getInstance(usuario).agregarMovimiento("Acceso a cuenta : " + cta.descripcionCuenta());
                     menuCuenta(cta);
-
-                }
-            } else {
-                if (opcion == 2) {
-                    // this.cambiarContrasenia();
-                    movimientos.agregarMovimiento("Actualziación de contraseña" );
                 } else {
-                    if (opcion == 3) {
-                        System.out.println("--------------------------------------");
-                        System.out.println("-------- Registro de eventos ---------");
-                        System.out.println("--------------------------------------");
-                        movimientos.devolverInforme();
-                        break;
-                    }
-                    else {
-                        System.out.println("Opción inválida");
+                    if (opcion == 2) {
+
+                        Movimientos.getInstance(usuario).agregarMovimiento("Actualización de contraseña");
+                    } else {
+                        if (opcion == 3) {
+                            System.out.println("--------------------------------------");
+                            System.out.println("-------- Registro de eventos ---------");
+                            System.out.println("--------------------------------------");
+                            System.out.println();
+                            Movimientos.getInstance(usuario).devolverInforme();
+                            Movimientos.getInstance(usuario).mostrarErrores();
+                            ok = false;
+                        } else {
+                            System.out.println("Opción inválida");
+                        }
                     }
                 }
-
+            } catch (NumberFormatException ex) {
+                Movimientos.getInstance(usuario).agregarError(" Se debe ingresa un número");
 
             }
         }
@@ -69,8 +89,7 @@ public class ATM {
         System.out.println("--------------------------------------");
         System.out.println("1. Cuenta corriente\n2. Caja de ahorro en pesos\n3. Caja de ahorro en dólares ");
         System.out.println("--------------------------------------");
-        int opcion = sc.nextInt();
-
+        int opcion = Integer.parseInt(sc.nextLine());
         if (opcion == 1) {
             return this.usuario.ctaCorriente();
         } else {
@@ -85,31 +104,40 @@ public class ATM {
                 }
             }
         }
-
     }
 
 
     public void menuCuenta(Cuenta cta) {
+
         boolean ok = true;
-        movimientos.agregarMovimiento("Operaciones de cuenta");
+        Movimientos.getInstance(usuario).agregarMovimiento("Operaciones de cuenta");
         while (ok) {
             System.out.println("--------------------------------------");
             System.out.println("1. Mostrar saldo\n2. Depositar\n3. Retirar\n4. Volver atrás");
             System.out.println("--------------------------------------");
-            int opcion = sc.nextInt();
-            if (opcion == 1) {
-                System.out.println("El saldo es , " + cta.getSaldo());
-                menuCuenta(cta);
-            } else {
-                if (opcion == 2) {
-                    this.depositar(cta);
+            try {
+                int opcion = Integer.parseInt(sc.nextLine());
+                if (opcion == 1) {
+                    System.out.println("El saldo es , " + cta.getSaldo());
+                    menuCuenta(cta);
                 } else {
-                    if (opcion == 3) {
-                        menuRetiro(cta);
+                    if (opcion == 2) {
+                        this.depositar(cta);
                     } else {
-                        ok = false;
+                        if (opcion == 3) {
+                            menuRetiro(cta);
+                        } else {
+                            if (opcion == 4) {
+                                ok = false;
+                            }
+                        }
                     }
                 }
+            } catch (NullPointerException ex) {
+                Movimientos.getInstance(usuario).agregarError(" Se ingresó un número que no está en el menú");
+            } catch (NumberFormatException ex) {
+                Movimientos.getInstance(usuario).agregarError(" No se ingresó un número");
+
             }
         }
     }
@@ -127,38 +155,44 @@ public class ATM {
     }
 
     public void menuRetiro(Cuenta cta) {
+        Logger logger = Logger.getLogger("Logger.txt");
         System.out.println("--------------------------------------");
         System.out.println("1. $5000\n2. $10.000\n3. $20.000\n4. $50.000\n5. Retirar otro monto.");
         System.out.println("--------------------------------------");
-        int opcion = sc.nextInt();
-        if (!cta.equals(this.usuario.ctaPesos())) {
-            System.out.println("******************************************************");
-            informarComisiones(cta);
-            System.out.println("******************************************************");
+
+        try {
+            int opcion = Integer.parseInt(sc.nextLine());
+            if (!cta.equals(this.usuario.ctaPesos())) {
+                System.out.println("******************************************************");
+                informarComisiones(cta);
+                System.out.println("******************************************************");
+            }
+            switch (opcion) {
+                case 1:
+                    cta.retirar(5000.0);
+                    break;
+                case 2:
+                    cta.retirar(10000.0);
+                    break;
+                case 3:
+                    cta.retirar(20000.0);
+                    break;
+                case 4:
+                    cta.retirar(50000.0);
+                    break;
+                case 5:
+                    this.retirarOtroImporte(cta);
+                    break;
+                default:
+                    System.out.println("Opción inválida");
+            }
+            if (opcion >= 1 && opcion <= 5) {
+                System.out.println("Saldo restante " + cta.getSaldo());
+            }
+            Movimientos.getInstance(usuario).agregarMovimiento("Extracción, saldo actual " + "$" + cta.getSaldo());
+        } catch (InputMismatchException ex) {
+            Movimientos.getInstance(usuario).agregarError(" No se ingresó un número");
         }
-        switch (opcion) {
-            case 1:
-                cta.retirar(5000.0);
-                break;
-            case 2:
-                cta.retirar(10000.0);
-                break;
-            case 3:
-                cta.retirar(20000.0);
-                break;
-            case 4:
-                cta.retirar(50000.0);
-                break;
-            case 5:
-                this.retirarOtroImporte(cta);
-                break;
-            default:
-                System.out.println("Opción inválida");
-        }
-        if (opcion>=1 && opcion <=5) {
-            System.out.println("Saldo restante " + cta.getSaldo());
-        }
-        movimientos.agregarMovimiento("Extracción, saldo actual " + "$" +cta.getSaldo());
     }
 
     private void retirarOtroImporte(Cuenta cta) {
@@ -169,7 +203,7 @@ public class ATM {
     private void depositar(Cuenta cta) {
         System.out.println("Monto a depositar: ");
         Double dinero = sc.nextDouble();
-        movimientos.agregarMovimiento("Depósito de $ "+ dinero);
+        Movimientos.getInstance(usuario).agregarMovimiento("Depósito de $ " + dinero);
         cta.depositar(dinero);
     }
 /*
